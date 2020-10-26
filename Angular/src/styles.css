@@ -1,0 +1,26 @@
+/* show validation error indications, red for invalid, green for valid */
+input.ng-touched.ng-invalid{
+    border-color: #dc3545;
+}
+
+input.ng-valid{
+    border-color: #28a745;
+}
+
+/* show validation error for icons */
+.green-icon{
+    color: #28a745;
+}
+.red-icon{
+    color: #dc3545;
+}
+
+/* sets toastr stylings */
+#toast-container > div {
+    opacity:1;
+}
+
+/* changes cursor to pointer when hovering */
+table tr:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,70 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <!-- id input hidden with one-word data binding -->
+  <input type="hidden" name="PMId" [value]="service.formData.PMId">
+    <div class="form-group">
+      <!-- utilizing FontAwesome -->
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <!-- apply green or red class icon depending on whether or not the input is valid -->
+            <i class="fas fa-user" [class.green-icon]="CardOwnerName.valid" [class.red-icon]="CardOwnerName.invalid && CardOwnerName.touched"></i>
+          </div>
+        </div>
+        <!-- add input for Card Owner Name from Bootstrap form-control type -->
+        <input name="CardOwnerName" #CardOwnerName="ngModel" [(ngModel)]="service.formData.CardOwnerName" class="form-control"
+          placeholder="Card Owner Name" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <!-- utilizing FontAwesome -->
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+             <!-- apply green or red class icon depending on whether or not the input is valid -->
+            <i class="far fa-credit-card"  [class.green-icon]="CardNumber.valid" [class.red-icon]="CardNumber.invalid && CardNumber.touched"></i>
+          </div>
+        </div>
+        <!-- add input for Card Number from Bootstrap form-control type, uses exactly 16 characters -->
+        <input name="CardNumber" #CardNumber="ngModel" [(ngModel)]="service.formData.CardNumber" 
+        class="form-control" placeholder="16 Digit Card Number" required maxlength="16" minlength="16">
+      </div>
+    </div>
+    <!-- Expiration Date and CVV placed in the same row -->
+    <div class="form-row">
+      <!-- Expiration date uses only 7 characters -->
+      <div class="form-group col-md-7">
+        <!-- utilizing FontAwesome -->
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+               <!-- apply green or red class icon depending on whether or not the input is valid -->
+              <i class="fas fa-calendar-day"  [class.green-icon]="ExpirationDate.valid" [class.red-icon]="ExpirationDate.invalid && ExpirationDate.touched"></i>
+            </div>
+          </div>
+          <!-- add input for Expiration Date from Bootstrap form-control type -->
+          <input name="ExpirationDate" #ExpirationDate="ngModel" [(ngModel)]="service.formData.ExpirationDate" class="form-control"
+            placeholder="MM/YY" required maxlength="5" minlength="5">
+        </div>
+      </div>
+      <!-- CVV uses only 3 characters -->
+      <div class="form-group col-md-5">
+        <!-- utilizing FontAwesome -->
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+               <!-- apply green or red class icon depending on whether or not the input is valid -->
+              <i class="fas fa-lock"  [class.green-icon]="CVV.valid" [class.red-icon]="CVV.invalid && CVV.touched"></i>
+            </div>
+          </div>
+          <!-- add input for CVV from Bootstrap form-control type -->
+          <!-- CVV input is type password -->
+          <input type="password" name="CVV" #CVV="ngModel" [(ngModel)]="service.formData.CVV" class="form-control" placeholder="CVV"
+          required  maxlength="3" minlength="3">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <!-- the submit button is disabled unless the form is filled out properly -->
+      <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit</button>
+    </div>
+  </form>
